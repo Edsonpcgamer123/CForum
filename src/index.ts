@@ -453,7 +453,7 @@ export default {
 				}
 
 				const imageKey = await uploadImage(env as unknown as S3Env, file, userId, postId.toString(), type as 'post' | 'avatar');
-				const publicBase = (env as any).BUCKET ? `${url.origin}/r2` : undefined;
+				const publicBase = (env as any).BUCKET ? `${(env as any).BASE_URL || url.origin}/r2` : undefined;
 				const imageUrl = getPublicUrl(env as unknown as S3Env, imageKey, publicBase);
 				await security.logAudit(user.id, 'UPLOAD_IMAGE', 'image', imageUrl, { type, postId }, request);
 				

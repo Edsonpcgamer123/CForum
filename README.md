@@ -65,7 +65,7 @@
    - **Account > Pages** - Edit
 5. 选择你的账户，点击 **Continue to summary**
 6. 创建后复制 Token（只会显示一次）
-<img width="1774" height="510" alt="图片" src="https://github.com/user-attachments/assets/d8bc4044-1cfa-4c8a-9c34-515226930b4e" />
+<img width="1778" height="506" alt="图片" src="https://github.com/user-attachments/assets/0f7f179b-d2a9-4f3b-8981-f736d294898a" />
 
 #### 第二步：获取 Account ID
 
@@ -92,6 +92,7 @@
 | `BASE_URL` | 站点 URL | 例如：https://forum.adysec.com（未设置则自动使用当前请求域名） | 非必需，未配置则邮件异常 |
 | `TURNSTILE_SITE_KEY` | Cloudflare Turnstile Site Key | [Cloudflare Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile) | 非必需，未配置则使用Turnstile |
 | `TURNSTILE_SECRET_KEY` | Cloudflare Turnstile Secret | [Cloudflare Turnstile](https://dash.cloudflare.com/?to=/:account/turnstile) | 非必需，未配置则使用Turnstile |
+<img width="2244" height="1350" alt="图片" src="https://github.com/user-attachments/assets/77b109a9-ebb6-4e9d-a660-0828e28c5bd1" />
 
 #### 第四步：手动触发部署
 

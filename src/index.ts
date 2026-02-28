@@ -78,17 +78,9 @@ function hasControlCharacters(str: string): boolean {
 	return /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/.test(str);
 }
 
-// Utility to check if string is visually empty (only whitespace or invisible chars)
+// Utility to check if string is visually empty
 function isVisuallyEmpty(str: string): boolean {
 	if (!str) return true;
-	// Replace whitespace and common invisible characters
-	// \u200B-\u200F: Zero Width Space, ZWNJ, ZWJ, LRM, RLM
-	// \uFEFF: BOM
-	// \u2028-\u2029: Line/Paragraph Separator
-	// \u180E: Mongolian Vowel Separator
-    // \u3164: Hangul Filler
-    // \u115F-\u1160: Hangul Choseong/Jungseong Filler
-	// \x00-\x1F\x7F: ASCII Control Chars
 	const stripped = str.replace(/[\s\u200B-\u200F\uFEFF\u2028\u2029\u180E\u3164\u115F\u1160\x00-\x1F\x7F]+/g, '');
 	return stripped.length === 0;
 }
@@ -168,9 +160,7 @@ export default {
 			return new Response(method === 'HEAD' ? null : object.body, { headers });
 		}
 
-		// Ensure the database schema exists before anything else.  This is placed
-		// early so that even if security initialization fails (e.g. no JWT_SECRET),
-		// clients can still fetch posts without encountering "no such table" errors.
+		// Ensure the database schema exists before anything else.
 		const ensureSchema = async () => {
 			try {
 				await env.cforum_db.prepare('SELECT 1 FROM posts LIMIT 1').first();

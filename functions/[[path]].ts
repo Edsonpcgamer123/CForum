@@ -7,8 +7,10 @@ export const onRequest: PagesFunction = async (context) => {
 	const { request, env } = context;
 	const url = new URL(request.url);
 	const pathname = url.pathname;
+	const isApiRoute = pathname.startsWith('/api/');
+	const isR2Route = pathname.startsWith('/r2/');
 
-	if (!pathname.startsWith('/api/')) {
+	if (!isApiRoute && !isR2Route) {
 		return context.next();
 	}
 
@@ -32,7 +34,7 @@ export const onRequest: PagesFunction = async (context) => {
 			workerUrl = isLocalDev ? 'http://localhost:8787' : 'https://cforum.adysec.workers.dev';
 		}
 
-		console.log(`↔️ Proxying /api request to Worker: ${workerUrl}${pathname}`);
+		console.log(`↔️ Proxying request to Worker: ${workerUrl}${pathname}`);
 
 		const forwardUrl = new URL(pathname + url.search, workerUrl);
 

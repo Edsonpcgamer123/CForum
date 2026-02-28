@@ -27,6 +27,7 @@ export default {
 	routing: {
 		// API 路由转发到 Functions
 		'/api/*': 'functions/[[path]]',
+		'/r2/*': 'functions/[[path]]',
 		'/user': 'functions/[[path]]',
 		'/user/*': 'functions/[[path]]',
 		'/post/*': 'functions/[[path]]',

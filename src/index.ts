@@ -119,8 +119,20 @@ export default {
 
 		// Helper function to get base URL
 		const getBaseUrl = () => {
-			// Priority: 1. Env var 2. Request origin
-			return env.BASE_URL || url.origin;
+			// Priority: 1. Env var 2. X-Original-URL header (from Pages Functions) 3. Request origin
+			if (env.BASE_URL) {
+				console.log(`✅ Using BASE_URL from env: ${env.BASE_URL}`);
+				return env.BASE_URL;
+			}
+			
+			const xOriginalUrl = request.headers.get('X-Original-URL');
+			if (xOriginalUrl) {
+				console.log(`✅ Using X-Original-URL from Pages Functions: ${xOriginalUrl}`);
+				return xOriginalUrl;
+			}
+			
+			console.warn(`⚠️ BASE_URL not configured and no X-Original-URL header, falling back to request origin: ${url.origin}`);
+			return url.origin;
 		};
 
 		// CORS headers helper
@@ -453,10 +465,8 @@ export default {
 				}
 
 				const imageKey = await uploadImage(env as unknown as S3Env, file, userId, postId.toString(), type as 'post' | 'avatar');
-				const publicBase = (env as any).BUCKET ? `${(env as any).BASE_URL || url.origin}/r2` : undefined;
-				const imageUrl = getPublicUrl(env as unknown as S3Env, imageKey, publicBase);
-				await security.logAudit(user.id, 'UPLOAD_IMAGE', 'image', imageUrl, { type, postId }, request);
-				
+			const publicBase = (env as any).BUCKET ? `${getBaseUrl()}/r2` : undefined;
+			const imageUrl = getPublicUrl(env as unknown as S3Env, imageKey, publicBase);
 				return jsonResponse({ success: true, url: imageUrl });
 			} catch (e) {
 				console.error('Upload error:', e);

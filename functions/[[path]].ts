@@ -57,10 +57,15 @@ export const onRequest: PagesFunction = async (context) => {
 		// 构造转发 URL（保留 query string）
 		const forwardUrl = new URL(pathname + url.search, workerUrl);
 
-		// 转发请求给 Worker
+		// 转发请求给 Worker，并传递原始请求的 origin
+		const forwardHeaders = new Headers(request.headers);
+		forwardHeaders.set('X-Forwarded-Proto', url.protocol.replace(':', ''));
+		forwardHeaders.set('X-Forwarded-Host', url.hostname);
+		forwardHeaders.set('X-Original-URL', url.origin);
+
 		const response = await fetch(new Request(forwardUrl.toString(), {
 			method: request.method,
-			headers: request.headers,
+			headers: forwardHeaders,
 			body: request.body,
 		}));
 

